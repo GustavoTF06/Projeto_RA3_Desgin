@@ -1,7 +1,7 @@
 package com.sistema;
 
 import com.sistema.model.Usuario;
-import java.persistence.*;
+import javax.persistence.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,11 +9,11 @@ public class Main {
         EntityManager em = emf.createEntityManager();
 
         try {
-            System.out.println("Iniciando operações no banco...");
+            System.out.println("Iniciando operações no banco");
 
             em.getTransaction().begin();
 
-            Usuario usuario1 = new Usuario("Maria Silva", "maria@email.com");
+            Usuario usuario1 = new Usuario("Eduardo", "dud@email.com", "teste");
             em.persist(usuario1);
 
             em.getTransaction().commit();
