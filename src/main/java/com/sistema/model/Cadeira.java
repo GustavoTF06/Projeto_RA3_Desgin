@@ -25,7 +25,7 @@ public class Cadeira implements Serializable {
         this.marca = marca;
         this.altura = altura;
     }
-
+    public Cadeira(){}
     public Long getId() {
         return id;
     }

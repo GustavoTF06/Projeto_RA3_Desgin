@@ -29,6 +29,7 @@ public class Notebook implements Serializable {
         this.memoriaRam = memoriaRam;
         this.memoria = memoria;
     }
+    public Notebook(){}
 
     public Long getId() {
         return id;

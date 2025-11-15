@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 public class Main {
     public static void main(String[] args) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistema-persistence");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("sistemaPU");
         EntityManager em = emf.createEntityManager();
 
         try {

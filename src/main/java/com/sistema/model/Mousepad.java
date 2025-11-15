@@ -28,7 +28,7 @@ public class Mousepad implements Serializable{
         this.altura = altura;
         this.comprimento = altura;
     }
-
+    public Mousepad(){}
     public Long getId() {
         return id;
     }

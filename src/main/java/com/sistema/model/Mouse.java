@@ -25,7 +25,7 @@ public class Mouse implements Serializable{
         this.marca = marca;
         this.cor = cor;
     }
-
+    public Mouse(){}
     public Long getId() {
         return id;
     }

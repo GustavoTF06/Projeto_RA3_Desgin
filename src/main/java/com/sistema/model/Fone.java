@@ -25,7 +25,7 @@ public class Fone implements Serializable{
         this.marca = marca;
         this.microfone = microfone;
     }
-
+    public  Fone(){}
     public Long getId() {
         return id;
     }

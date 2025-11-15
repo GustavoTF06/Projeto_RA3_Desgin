@@ -24,7 +24,7 @@ public class Teclado implements Serializable{
         this.marca = marca;
         this.tamanho = tamanho;
     }
-
+    public Teclado(){}
     public Long getId() {
         return id;
     }
