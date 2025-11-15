@@ -1,4 +1,4 @@
-package com.sistema.model;
+package com.sistema.model.Notebook;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -29,6 +29,7 @@ public class Notebook implements Serializable {
         this.memoriaRam = memoriaRam;
         this.memoria = memoria;
     }
+
     public Notebook(){}
 
     public Long getId() {
@@ -71,10 +72,14 @@ public class Notebook implements Serializable {
         this.memoria = memoria;
     }
 
-
-
     @Override
-    public String toString(){
-        return "Notebook{id= "+ id + ", nome: " + nome + ", processador" + processador + ", memoria Ram: " + memoriaRam + ",memoria: " + memoria + "}";
+    public String toString() {
+        return "Notebook{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", processador='" + processador + '\'' +
+                ", memoriaRam='" + memoriaRam + '\'' +
+                ", memoria='" + memoria + '\'' +
+                '}';
     }
 }

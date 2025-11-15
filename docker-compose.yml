@@ -2,7 +2,7 @@
 services:
   mysql_db:
     image: mysql:8.0
-    container_name: mysql_container
+    container_name: design
     environment:
       MYSQL_ROOT_PASSWORD: senha_root
       MYSQL_DATABASE: design

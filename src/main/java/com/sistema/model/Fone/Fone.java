@@ -1,12 +1,12 @@
-package com.sistema.model;
+package com.sistema.model.Fone;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Cadeira")
+@Table(name = "fone")
 
-public class Cadeira implements Serializable {
+public class Fone implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,15 +17,17 @@ public class Cadeira implements Serializable {
     @Column(name = "marca", nullable = false)
     private String marca;
 
-    @Column(name = "altura", nullable = false)
-    private double altura;
+    @Column(name = "microfone", nullable = false)
+    private boolean microfone;
 
-    public Cadeira(String nome, String marca, double altura) {
+    public Fone(String nome, String marca, boolean microfone) {
         this.nome = nome;
         this.marca = marca;
-        this.altura = altura;
+        this.microfone = microfone;
     }
-    public Cadeira(){}
+
+    public  Fone(){}
+
     public Long getId() {
         return id;
     }
@@ -50,16 +52,21 @@ public class Cadeira implements Serializable {
         this.marca = marca;
     }
 
-    public double getAltura() {
-        return altura;
+    public boolean isMicrofone() {
+        return microfone;
     }
 
-    public void setAltura(double altura) {
-        this.altura = altura;
+    public void setMicrofone(boolean microfone) {
+        this.microfone = microfone;
     }
 
     @Override
     public String toString() {
-        return "Cadeira{id=" + id + ", Nome='" + nome + "', Marca='" + marca + "Altura: " + altura + "'}";
+        return "Fone{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", marca='" + marca + '\'' +
+                ", microfone=" + microfone +
+                '}';
     }
 }

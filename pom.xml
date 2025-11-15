@@ -17,18 +17,11 @@
 
     <dependencies>
 
-        <!-- EclipseLink (JPA Provider) -->
+        <!-- EclipseLink 2.7.9 -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
-            <artifactId>EclipseLink</artifactId>
-            <version>2.7.8</version>
-        </dependency>
-
-        <!-- JPA 2.2 -->
-        <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <version>2.2</version>
+            <artifactId>eclipseLink</artifactId>
+            <version>2.7.9</version>
         </dependency>
 
         <dependency>
@@ -37,9 +30,6 @@
             <version>8.0.33</version>
         </dependency>
 
-
-
-        <!-- SLF4J: requerido pelo EclipseLink -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-nop</artifactId>
@@ -47,5 +37,13 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
 
 </project>

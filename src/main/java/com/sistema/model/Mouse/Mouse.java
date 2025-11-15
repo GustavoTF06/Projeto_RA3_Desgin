@@ -1,12 +1,12 @@
-package com.sistema.model;
+package com.sistema.model.Mouse;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "mouse")
-public class Mouse implements Serializable{
 
+public class Mouse implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,7 +14,7 @@ public class Mouse implements Serializable{
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "marca", nullable = false, unique = true)
+    @Column(name = "marca", nullable = false)
     private String marca;
 
     @Column(name = "cor", nullable = false)
@@ -25,7 +25,9 @@ public class Mouse implements Serializable{
         this.marca = marca;
         this.cor = cor;
     }
+
     public Mouse(){}
+
     public Long getId() {
         return id;
     }
@@ -60,6 +62,11 @@ public class Mouse implements Serializable{
 
     @Override
     public String toString() {
-        return "Mouse{id=" + id + ", nome='" + nome + "', marca='" + marca + "Cor: " + cor + "'}";
+        return "Mouse{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", marca='" + marca + '\'' +
+                ", cor='" + cor + '\'' +
+                '}';
     }
 }

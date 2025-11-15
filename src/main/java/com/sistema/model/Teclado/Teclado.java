@@ -1,10 +1,11 @@
-package com.sistema.model;
+package com.sistema.model.Teclado;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "teclado")
+
 public class Teclado implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +25,9 @@ public class Teclado implements Serializable{
         this.marca = marca;
         this.tamanho = tamanho;
     }
+
     public Teclado(){}
+
     public Long getId() {
         return id;
     }
@@ -59,6 +62,11 @@ public class Teclado implements Serializable{
 
     @Override
     public String toString() {
-        return "Teclado{id=" + id + ", Nome='" + nome + "', Marca='" + marca + "Tamanho: " + tamanho + "'}";
+        return "Teclado{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", marca='" + marca + '\'' +
+                ", tamanho='" + tamanho + '\'' +
+                '}';
     }
 }

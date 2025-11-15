@@ -1,10 +1,11 @@
-package com.sistema.model;
+package com.sistema.model.Mousepad;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "mousepad")
+
 public class Mousepad implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,9 +27,11 @@ public class Mousepad implements Serializable{
         this.nome = nome;
         this.marca = marca;
         this.altura = altura;
-        this.comprimento = altura;
+        this.comprimento = comprimento;
     }
+
     public Mousepad(){}
+
     public Long getId() {
         return id;
     }
@@ -71,6 +74,12 @@ public class Mousepad implements Serializable{
 
     @Override
     public String toString() {
-        return "Mousepad{id=" + id + ", Nome='" + nome + "', Marca='" + marca + "Altura: " + altura + "Comprimento: " + comprimento + "'}";
+        return "Mousepad{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", marca='" + marca + '\'' +
+                ", altura=" + altura +
+                ", comprimento=" + comprimento +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.sistema;
 
-import com.sistema.model.Usuario;
+import com.sistema.model.Usuario.*;
+
 import javax.persistence.*;
 
 public class Main {
@@ -28,6 +29,7 @@ public class Main {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
+
         } finally {
             em.close();
             emf.close();
