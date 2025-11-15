@@ -8,7 +8,7 @@
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
         <class>com.sistema.model.Usuario</class>
-        <class>com.sistema.model.NoteBook</class>
+        <class>com.sistema.model.Notebook</class>
         <class>com.sistema.model.Mouse</class>
         <class>com.sistema.model.Teclado</class>
         <class>com.sistema.model.Fone</class>

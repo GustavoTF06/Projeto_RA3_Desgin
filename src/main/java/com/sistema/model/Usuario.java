@@ -14,13 +14,11 @@ public class Usuario implements Serializable {
     @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(name = "senha", unique = false)
+    @Column(name = "senha", nullable = false, unique = false)
     private String senha;
-
-    public Usuario() {}
 
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
