@@ -151,7 +151,21 @@ public class Main {
                     System.out.println("teclado deletado com sucesso");
                     opcao=0;
                     break;
-
+                case 13:
+                    System.out.println("digite o nome do mousepad");
+                    var nomeMousepad = scanner.next();
+                    System.out.println("digite a marca do mousepad");
+                    var marcaMousepad = scanner.next();
+                    System.out.println("digite a altura do mousepad" );
+                    var alturaMousepad = scanner.nextDouble();
+                    System.out.println("digite o comprimento do mousepad");
+                    var comprimentoMousepad = scanner.nextDouble();
+                    MousepadDto mousepadDto = new MousepadDto(nomeMousepad,marcaMousepad,alturaMousepad,
+                            comprimentoMousepad);
+                    var mousepad = mousepadService.criar(mousepadDto);
+                    System.out.println(mousepad);
+                    opcao = 0;
+                    break;
 
             }
         }
