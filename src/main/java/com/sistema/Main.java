@@ -109,6 +109,49 @@ public class Main {
                     System.out.println("Usuario deletado com sucesso");
                     opcao = 0;
                     break;
+
+                case 9:
+                    System.out.println("digite o nome do teclado");
+                    var nomeTeclado = scanner.next();
+                    System.out.println("digite a marca do teclado");
+                    var marcaTeclado = scanner.next();
+                    System.out.println("digite o tamanho do teclado");
+                    var tamanhoTeclado = scanner.next();
+                    TecladoDto tecladoDto = new TecladoDto(nomeTeclado,marcaTeclado,tamanhoTeclado);
+                    var teclado = tecladoService.criar(tecladoDto);
+                    System.out.println(teclado);
+                    opcao = 0;
+                    break;
+                case 10:
+                    System.out.println("digite o id do teclado");
+                    var idTecladoBusccar = scanner.nextLong();
+                    var tecladoBuscado = tecladoService.buscar(idTecladoBusccar);
+                    System.out.println(tecladoBuscado);
+                    opcao=0;
+                    break;
+                case 11:
+                    System.out.println("digite o id do teclado ");
+                    var idTecladoEditar = scanner.nextLong();
+                    System.out.println("digite o nome do teclado");
+                    var nomeTecladoEditar = scanner.next();
+                    System.out.println("digite a marca do teclado");
+                    var marcaTecladoEditar = scanner.next();
+                    System.out.println("digite o tamanho do teclado");
+                    var tamanhoTecladoEditar = scanner.next();
+                    TecladoDto tecladoDtoEditar = new TecladoDto(nomeTecladoEditar,marcaTecladoEditar,tamanhoTecladoEditar);
+                    var tecladoEditado = tecladoService.editar(idTecladoEditar,tecladoDtoEditar);
+                    System.out.println(tecladoEditado);
+                    opcao=0;
+                    break;
+
+                case 12:
+                    System.out.println("digite o id od teclado para deletar");
+                    var tecladoDeletar = scanner.nextLong();
+                    tecladoService.deletar(tecladoDeletar);
+                    System.out.println("teclado deletado com sucesso");
+                    opcao=0;
+                    break;
+
             }
         }
         System.out.println("\nPrograma encerrado.");
