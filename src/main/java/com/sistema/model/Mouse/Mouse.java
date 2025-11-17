@@ -20,10 +20,10 @@ public class Mouse implements Serializable{
     @Column(name = "cor", nullable = false)
     private String cor;
 
-    public Mouse(String nome, String marca, String cor){
-        this.nome = nome;
-        this.marca = marca;
-        this.cor = cor;
+    public Mouse(MouseDto MouseDto) {
+        this.nome = MouseDto.getNome();
+        this.marca = MouseDto.getMarca();
+        this.cor = MouseDto.getCor();
     }
 
     public Mouse(){}
