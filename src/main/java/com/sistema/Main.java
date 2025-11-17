@@ -221,7 +221,6 @@ public class Main {
                     opcao=0;
                     break;
 
-
                 case 13:
                     System.out.println("digite o nome do mousepad");
                     var nomeMousepad = scanner.next();
@@ -237,6 +236,7 @@ public class Main {
                     System.out.println(mousepad);
                     opcao=0;
                     break;
+
                 case 14:
                     System.out.println("digite o id do mousepad");
                     var mousepadId = scanner.nextLong();
@@ -244,6 +244,7 @@ public class Main {
                     System.out.println(mousepadBuscado);
                     opcao=0;
                     break;
+
                 case 15:
                     System.out.println("digite o id do mousepad");
                     var mousepadIdEditar = scanner.nextLong();
@@ -260,12 +261,14 @@ public class Main {
                     var mousepadEditado = mousepadService.editar(mousepadIdEditar,mousepadDtoEditar);
                     opcao=0;
                     break;
+
                 case 16:
                     System.out.println("digite o id do mousepad");
                     var mousepadIdDeletar = scanner.nextLong();
                     mousepadService.deletar(mousepadIdDeletar);
                     System.out.println("deletado com sucesso");
                     opcao=0;
+                    break;
 
                 case 17:
                     System.out.println("Digite o nome do mouse");
@@ -310,6 +313,52 @@ public class Main {
                     System.out.println("Mouse deletado com sucesso");
                     opcao = 0;
 
+                    break;
+
+                case 21:
+                    System.out.println("Digite o nome do fone");
+                    String nomeFone = scanner.next();
+                    System.out.println("Digite a marca do fone");
+                    String marcaFone = scanner.next();
+                    System.out.println("O fone possui microfone? (true/false)");
+                    boolean microfoneFone = scanner.nextBoolean();
+
+                    FoneDto foneDtoCriar = new FoneDto(nomeFone, marcaFone, microfoneFone);
+                    var foneCriado = foneService.criar(foneDtoCriar);
+                    System.out.println("Fone criado: " + foneCriado);
+                    opcao = 0;
+                    break;
+
+                case 22:
+                    System.out.println("Digite o id do fone");
+                    long idFoneBuscar = scanner.nextLong();
+                    var foneBuscado = foneService.buscar(idFoneBuscar);
+                    System.out.println("Encontrado: " + foneBuscado);
+                    opcao = 0;
+                    break;
+
+                case 23:
+                    System.out.println("Digite o id do fone para editar");
+                    long idFoneEditar = scanner.nextLong();
+                    System.out.println("Digite o nome do fone");
+                    String nomeFoneEditar = scanner.next();
+                    System.out.println("Digite a marca do fone");
+                    String marcaFoneEditar = scanner.next();
+                    System.out.println("O fone possui microfone? (true/false)");
+                    boolean microfoneFoneEditar = scanner.nextBoolean();
+
+                    FoneDto foneDtoEditar = new FoneDto(nomeFoneEditar, marcaFoneEditar, microfoneFoneEditar);
+                    var foneEditado = foneService.editar(idFoneEditar, foneDtoEditar);
+                    System.out.println("Editado: " + foneEditado);
+                    opcao = 0;
+                    break;
+
+                case 24:
+                    System.out.println("Digite o id do fone para deletar");
+                    long idFoneDeletar = scanner.nextLong();
+                    foneService.deletar(idFoneDeletar);
+                    System.out.println("Fone deletado com sucesso!");
+                    opcao = 0;
                     break;
 
                 case 25:
