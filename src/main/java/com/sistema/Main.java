@@ -66,77 +66,146 @@ public class Main {
                     opcao = scanner.nextInt();
                     break;
 
-
-
                 case 1:
-                    System.out.println("digite o nome do usuario");
+                    System.out.println("Digite o nome do usuario");
                     var nome = scanner.next();
-                    System.out.println("digite o email do usuario");
+                    System.out.println("Digite o email do usuario");
                     var email = scanner.next();
-                    System.out.println("digite a senha do usuario");
+                    System.out.println("Digite a senha do usuario");
                     var senha = scanner.next();
                     UsuarioDto usuarioDto = new UsuarioDto(nome, email, senha);
                     var usuario = usuarioService.criar(usuarioDto);
-                    System.out.println("usuario de email: " + usuario.getEmail() + " e id: "
+                    System.out.println("Usuario de email: " + usuario.getEmail() + " e id: "
                             + usuario.getId() + "criado com sucesso");
                     opcao = 0;
                     break;
+
                 case 2:
-                    System.out.println("digite o id do usuario");
+                    System.out.println("Digite o id do usuario");
                     var idUsuarioBuscado = scanner.nextLong();
                     var usuarioBuscado = usuarioService.buscar(idUsuarioBuscado);
                     System.out.println(usuarioBuscado);
                     opcao = 0;
                     break;
+
                 case 3:
-                    System.out.println("digite o id do usuario");
+                    System.out.println("Digite o id do usuario");
                     var idUsuarioEditar = scanner.nextLong();
-                    System.out.println("digite o nome do usuario");
+                    System.out.println("Digite o nome do usuario");
                     var nomeEditar = scanner.next();
-                    System.out.println("digite o email do usuario");
+                    System.out.println("Digite o email do usuario");
                     var emailEditar = scanner.next();
-                    System.out.println("digite a senha do usuario");
+                    System.out.println("Digite a senha do usuario");
                     var senhaEditar = scanner.next();
                     UsuarioDto usuarioDtoEditar = new UsuarioDto(nomeEditar, emailEditar, senhaEditar);
                     var usuarioEditado = usuarioService.editar(idUsuarioEditar, usuarioDtoEditar);
                     System.out.println(usuarioEditado);
                     opcao = 0;
                     break;
+
                 case 4:
-                    System.out.println("digite o id do usuario para deletar");
+                    System.out.println("Digite o id do usuario para deletar");
                     var idUsuarioDeletar = scanner.nextLong();
                     usuarioService.deletar(idUsuarioDeletar);
                     System.out.println("Usuario deletado com sucesso");
                     opcao = 0;
                     break;
 
+                case 5:
+                    scanner.nextLine(); // limpar buffer
+                    System.out.print("Nome: ");
+                    String nomeNotebook = scanner.nextLine();
+                    System.out.print("Processador: ");
+                    String processadorNotebook = scanner.nextLine();
+                    System.out.print("Memória RAM: ");
+                    String memoriaRamNotebook = scanner.nextLine();
+                    System.out.print("Memória interna: ");
+                    String memoriaNotebook = scanner.nextLine();
+                    NotebookDto notebookDto = new NotebookDto(
+                            nomeNotebook,
+                            processadorNotebook,
+                            memoriaRamNotebook,
+                            memoriaNotebook
+                    );
+                    Notebook notebookCriado = notebookService.criar(notebookDto);
+                    System.out.println("Notebook criado com ID: " + notebookCriado.getId());
+                    opcao = 0;
+                    break;
+
+                case 6:
+                    System.out.print("ID: ");
+                    Long idBuscarNotebook = scanner.nextLong();
+                    Notebook notebookEncontrado = notebookService.buscar(idBuscarNotebook);
+                    if (notebookEncontrado != null) {
+                        System.out.println("Encontrado: " + notebookEncontrado);
+                    } else {
+                        System.out.println("Notebook não encontrado.");
+                    }
+                    opcao = 0;
+                    break;
+
+                case 7:
+                    scanner.nextLine();
+                    System.out.print("ID do Notebook: ");
+                    Long idEditarNotebook = scanner.nextLong();
+                    scanner.nextLine();
+                    System.out.print("Novo nome: ");
+                    String nomeNovo = scanner.nextLine();
+                    System.out.print("Novo processador: ");
+                    String processadorNovo = scanner.nextLine();
+                    System.out.print("Nova memória RAM: ");
+                    String memoriaRamNova = scanner.nextLine();
+                    System.out.print("Nova memória: ");
+                    String memoriaNova = scanner.nextLine();
+                    NotebookDto notebookAtualizar = new NotebookDto(
+                            nomeNovo,
+                            processadorNovo,
+                            memoriaRamNova,
+                            memoriaNova
+                    );
+                    Notebook notebookEditado = notebookService.editar(idEditarNotebook, notebookAtualizar);
+                    System.out.println("Notebook atualizado: " + notebookEditado);
+                    opcao = 0;
+                    break;
+
+                case 8:
+                    System.out.println("\n==== Deletar Notebook ====");
+                    System.out.print("ID: ");
+                    Long idDeletarNotebook = scanner.nextLong();
+                    notebookService.deletar(idDeletarNotebook);
+                    System.out.println("Notebook deletado.");
+                    opcao = 0;
+                    break;
+
                 case 9:
-                    System.out.println("digite o nome do teclado");
+                    System.out.println("Digite o nome do teclado");
                     var nomeTeclado = scanner.next();
-                    System.out.println("digite a marca do teclado");
+                    System.out.println("Digite a marca do teclado");
                     var marcaTeclado = scanner.next();
-                    System.out.println("digite o tamanho do teclado");
+                    System.out.println("Digite o tamanho do teclado");
                     var tamanhoTeclado = scanner.next();
                     TecladoDto tecladoDto = new TecladoDto(nomeTeclado,marcaTeclado,tamanhoTeclado);
                     var teclado = tecladoService.criar(tecladoDto);
                     System.out.println(teclado);
                     opcao = 0;
                     break;
+
                 case 10:
-                    System.out.println("digite o id do teclado");
+                    System.out.println("Digite o id do teclado");
                     var idTecladoBusccar = scanner.nextLong();
                     var tecladoBuscado = tecladoService.buscar(idTecladoBusccar);
                     System.out.println(tecladoBuscado);
                     opcao=0;
                     break;
+
                 case 11:
-                    System.out.println("digite o id do teclado ");
+                    System.out.println("Digite o id do teclado ");
                     var idTecladoEditar = scanner.nextLong();
-                    System.out.println("digite o nome do teclado");
+                    System.out.println("Digite o nome do teclado");
                     var nomeTecladoEditar = scanner.next();
-                    System.out.println("digite a marca do teclado");
+                    System.out.println("Digite a marca do teclado");
                     var marcaTecladoEditar = scanner.next();
-                    System.out.println("digite o tamanho do teclado");
+                    System.out.println("Digite o tamanho do teclado");
                     var tamanhoTecladoEditar = scanner.next();
                     TecladoDto tecladoDtoEditar = new TecladoDto(nomeTecladoEditar,marcaTecladoEditar,tamanhoTecladoEditar);
                     var tecladoEditado = tecladoService.editar(idTecladoEditar,tecladoDtoEditar);
@@ -145,14 +214,57 @@ public class Main {
                     break;
 
                 case 12:
-                    System.out.println("digite o id od teclado para deletar");
+                    System.out.println("Digite o id od teclado para deletar");
                     var tecladoDeletar = scanner.nextLong();
                     tecladoService.deletar(tecladoDeletar);
-                    System.out.println("teclado deletado com sucesso");
+                    System.out.println("Teclado deletado com sucesso");
                     opcao=0;
                     break;
 
+                case 25:
+                    System.out.println("Digite o nome da cadeira");
+                    String nomeCadeira = scanner.next();
+                    System.out.println("Digite a marca da cadeira");
+                    String marcaCadeira = scanner.next();
+                    System.out.println("Digite a altura da cadeira");
+                    double alturaCadeira = scanner.nextDouble();
+                    CadeiraDto cadeiraDtoCriar = new CadeiraDto(nomeCadeira, marcaCadeira, alturaCadeira);
+                    var cadeiraCriada = cadeiraService.criar(cadeiraDtoCriar);
+                    System.out.println("Cadeira criada: " + cadeiraCriada);
+                    opcao = 0;
+                    break;
 
+                case 26:
+                    System.out.println("Digite o id da cadeira");
+                    long idCadeiraBuscar = scanner.nextLong();
+                    var cadeiraBuscada = cadeiraService.buscar(idCadeiraBuscar);
+                    System.out.println("Encontrada: " + cadeiraBuscada);
+                    opcao = 0;
+                    break;
+
+                case 27:
+                    System.out.println("Digite o id da cadeira para deletar");
+                    long idCadeiraDeletar = scanner.nextLong();
+                    cadeiraService.deletar(idCadeiraDeletar);
+                    System.out.println("Cadeira deletada com sucesso!");
+                    opcao = 0;
+                    break;
+
+                case 28:
+                    System.out.println("Digite o id da cadeira");
+                    long idCadeiraEditar = scanner.nextLong();
+                    System.out.println("Digite o nome da cadeira");
+                    String nomeCadeiraEditar = scanner.next();
+                    System.out.println("Digite a marca da cadeira");
+                    String marcaCadeiraEditar = scanner.next();
+                    System.out.println("Digite a altura da cadeira");
+                    double alturaCadeiraEditar = scanner.nextDouble();
+                    CadeiraDto cadeiraDtoEditar =
+                            new CadeiraDto(nomeCadeiraEditar, marcaCadeiraEditar, alturaCadeiraEditar);
+                    var cadeiraEditada = cadeiraService.editar(idCadeiraEditar, cadeiraDtoEditar);
+                    System.out.println("Editado: " + cadeiraEditada);
+                    opcao = 0;
+                    break;
             }
         }
         System.out.println("\nPrograma encerrado.");
