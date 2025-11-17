@@ -29,7 +29,7 @@ public class Main {
         CadeiraDAO cadeiraDAO = new CadeiraDAO();
         CadeiraService cadeiraService = new CadeiraService(cadeiraDAO);
         int opcao = 0 ;
-        while (opcao == 29){
+        while (opcao != 29){
             switch (opcao){
                 case 0:
                     System.out.println("\n=====================");
@@ -112,7 +112,7 @@ public class Main {
                     break;
 
                 case 5:
-                    scanner.nextLine(); // limpar buffer
+                    scanner.nextLine();
                     System.out.print("Nome: ");
                     String nomeNotebook = scanner.nextLine();
                     System.out.print("Processador: ");
@@ -219,6 +219,50 @@ public class Main {
                     tecladoService.deletar(tecladoDeletar);
                     System.out.println("Teclado deletado com sucesso");
                     opcao=0;
+                    break;
+
+                case 17:
+                    System.out.println("Digite o nome do mouse");
+                    String nomeMouse = scanner.next();
+                    System.out.println("Digite a marca do mouse");
+                    String marcaMouse = scanner.next();
+                    System.out.println("Digite a cor do mouse");
+                    String corMouse = scanner.next();
+                    MouseDto mouseDtoCriar = new MouseDto(nomeMouse, marcaMouse, corMouse);
+                    var mouseCriado = mouseService.criar(mouseDtoCriar);
+                    System.out.println("Mouse criado com sucesso: " + mouseCriado);
+                    opcao = 0;
+                    break;
+
+                case 18:
+                    System.out.println("Digite o id do mouse");
+                    long idMouseEditar = scanner.nextLong();
+                    System.out.println("Digite o nome do mouse");
+                    String nomeMouseEditar = scanner.next();
+                    System.out.println("Digite a marca do mouse");
+                    String marcaMouseEditar = scanner.next();
+                    System.out.println("Digite a cor do mouse");
+                    String corMouseEditar = scanner.next();
+                    MouseDto mouseDtoEditar = new MouseDto(nomeMouseEditar, marcaMouseEditar, corMouseEditar);
+                    var mouseEditado = mouseService.editar(idMouseEditar, mouseDtoEditar);
+                    System.out.println("Mouse editado com sucesso: " + mouseEditado);
+                    opcao = 0;
+                    break;
+
+                case 19:
+                    System.out.println("Digite o id do mouse");
+                    long idMouseBuscar = scanner.nextLong();
+                    var mouseBuscado = mouseService.buscar(idMouseBuscar);
+                    System.out.println("Encontrado: " + mouseBuscado);
+                    opcao = 0;
+                    break;
+
+                case 20:
+                    System.out.println("Digite o id do mouse para deletar");
+                    long idMouseDeletar = scanner.nextLong();
+                    mouseService.deletar(idMouseDeletar);
+                    System.out.println("Mouse deletado com sucesso");
+                    opcao = 0;
                     break;
 
                 case 25:
