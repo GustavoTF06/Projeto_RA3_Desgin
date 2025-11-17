@@ -234,7 +234,38 @@ public class Main {
                             comprimentoMousepad);
                     var mousepad = mousepadService.criar(mousepadDto);
                     System.out.println(mousepad);
-
+                    opcao=0;
+                    break;
+                case 14:
+                    System.out.println("digite o id do mousepad");
+                    var mousepadId = scanner.nextLong();
+                    var mousepadBuscado = mousepadService.buscar(mousepadId);
+                    System.out.println(mousepadBuscado);
+                    opcao=0;
+                    break;
+                case 15:
+                    System.out.println("digite o id do mousepad");
+                    var mousepadIdEditar = scanner.nextLong();
+                    System.out.println("digite o nome do mousepad");
+                    var nomeMousepadEditar  = scanner.next();
+                    System.out.println("digite a marca do mousepad");
+                    var marcaMousepadEditar  = scanner.next();
+                    System.out.println("digite a altura do mousepad" );
+                    var alturaMousepadEditar  = scanner.nextDouble();
+                    System.out.println("digite o comprimento do mousepad");
+                    var comprimentoMousepadEditar  = scanner.nextDouble();
+                    MousepadDto mousepadDtoEditar  = new MousepadDto(nomeMousepadEditar ,marcaMousepadEditar
+                            ,alturaMousepadEditar , comprimentoMousepadEditar );
+                    var mousepadEditado = mousepadService.editar(mousepadIdEditar,mousepadDtoEditar);
+                    opcao=0;
+                    break;
+                case 16:
+                    System.out.println("digite o id do mousepad");
+                    var mousepadIdDeletar = scanner.nextLong();
+                    mousepadService.deletar(mousepadIdDeletar);
+                    System.out.println("deletado com sucesso");
+                    opcao=0;
+                    break;
 
                 case 25:
                     System.out.println("Digite o nome da cadeira");

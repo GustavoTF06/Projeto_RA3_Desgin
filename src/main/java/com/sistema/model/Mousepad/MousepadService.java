@@ -24,5 +24,8 @@ public class MousepadService {
         var mousepad = mousepadDAO.buscar(id);
         return mousepad;
     }
+    public void deletar(Long id){
+        mousepadDAO.deletar(id);
+    }
 
 }
