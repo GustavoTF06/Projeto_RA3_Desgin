@@ -1,6 +1,12 @@
 package com.sistema;
 
+import com.sistema.model.Cadeira.Cadeira;
+import com.sistema.model.Cadeira.CadeiraDAO;
+import com.sistema.model.Cadeira.CadeiraService;
+import com.sistema.model.Fone.FoneDAO;
+import com.sistema.model.Fone.FoneService;
 import com.sistema.model.Mouse.MouseDAO;
+import com.sistema.model.Mouse.MouseService;
 import com.sistema.model.Mousepad.Mousepad;
 import com.sistema.model.Mousepad.MousepadDAO;
 import com.sistema.model.Mousepad.MousepadService;
@@ -25,7 +31,11 @@ public class Main {
         MousepadDAO mousepadDAO = new MousepadDAO();
         MousepadService mousepadService = new MousepadService(mousepadDAO);
         MouseDAO mouseDAO = new MouseDAO();
-
+        MouseService mouseService = new MouseService(mouseDAO);
+        FoneDAO foneDAO = new FoneDAO();
+        FoneService foneService = new FoneService(foneDAO);
+        CadeiraDAO cadeiraDAO = new CadeiraDAO();
+        CadeiraService cadeiraService = new CadeiraService(cadeiraDAO);
         int opcao = 0 ;
         while (opcao == -1){
             switch (opcao){
