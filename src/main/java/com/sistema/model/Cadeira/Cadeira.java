@@ -20,10 +20,10 @@ public class Cadeira implements Serializable {
     @Column(name = "altura", nullable = false)
     private double altura;
 
-    public Cadeira(String nome, String marca, double altura) {
-        this.nome = nome;
-        this.marca = marca;
-        this.altura = altura;
+    public Cadeira(CadeiraDto cadeiraDto) {
+        this.nome = cadeiraDto.getNome();
+        this.marca = cadeiraDto.getMarca();
+        this.altura = cadeiraDto.getAltura();
     }
 
     public Cadeira(){}

@@ -1,6 +1,7 @@
 package com.sistema.model.Usuario;
 
 public class UsuarioService {
+
     private final UsuarioDAO usuarioDAO;
 
     public UsuarioService(UsuarioDAO usuarioDAO) {
@@ -13,6 +14,9 @@ public class UsuarioService {
     }
     public Usuario editar(Long id,UsuarioDto usuarioAtualizar){
         Usuario usuario = usuarioDAO.buscar(id);
+        if (usuario == null) {
+            throw new IllegalArgumentException("Cadeira não encontrada para o ID: " + id);
+        }
         usuario.setEmail(usuarioAtualizar.getEmail());
         usuario.setNome(usuarioAtualizar.getNome());
         usuario.setSenha(usuarioAtualizar.getSenha());

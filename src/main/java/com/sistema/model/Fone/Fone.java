@@ -20,10 +20,10 @@ public class Fone implements Serializable{
     @Column(name = "microfone", nullable = false)
     private boolean microfone;
 
-    public Fone(String nome, String marca, boolean microfone) {
-        this.nome = nome;
-        this.marca = marca;
-        this.microfone = microfone;
+    public Fone(FoneDto foneDto) {
+        this.nome = foneDto.getNome();
+        this.marca = foneDto.getMarca();
+        this.microfone = foneDto.isMicrofone();
     }
 
     public  Fone(){}
