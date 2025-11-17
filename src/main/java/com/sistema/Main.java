@@ -1,19 +1,11 @@
 package com.sistema;
 
-import com.sistema.model.Cadeira.Cadeira;
-import com.sistema.model.Cadeira.CadeiraDAO;
-import com.sistema.model.Cadeira.CadeiraService;
-import com.sistema.model.Fone.FoneDAO;
-import com.sistema.model.Fone.FoneService;
-import com.sistema.model.Mouse.MouseDAO;
-import com.sistema.model.Mouse.MouseService;
-import com.sistema.model.Mousepad.Mousepad;
-import com.sistema.model.Mousepad.MousepadDAO;
-import com.sistema.model.Mousepad.MousepadService;
-import com.sistema.model.Notebook.NotebookDAO;
-import com.sistema.model.Notebook.NotebookService;
-import com.sistema.model.Teclado.TecladoDAO;
-import com.sistema.model.Teclado.TecladoService;
+import com.sistema.model.Cadeira.*;
+import com.sistema.model.Fone.*;
+import com.sistema.model.Mouse.*;
+import com.sistema.model.Mousepad.*;
+import com.sistema.model.Notebook.*;
+import com.sistema.model.Teclado.*;
 import com.sistema.model.Usuario.*;
 
 import javax.persistence.*;
@@ -25,7 +17,7 @@ public class Main {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         UsuarioService usuarioService = new UsuarioService(usuarioDAO);
         NotebookDAO notebookDAO = new NotebookDAO();
-        NotebookService notebookService= new NotebookService(notebookDAO);
+        NotebookService notebookService = new NotebookService(notebookDAO);
         TecladoDAO tecladoDAO = new TecladoDAO();
         TecladoService tecladoService = new TecladoService(tecladoDAO);
         MousepadDAO mousepadDAO = new MousepadDAO();
@@ -36,40 +28,45 @@ public class Main {
         FoneService foneService = new FoneService(foneDAO);
         CadeiraDAO cadeiraDAO = new CadeiraDAO();
         CadeiraService cadeiraService = new CadeiraService(cadeiraDAO);
-        int opcao = 0 ;
-        while (opcao != -1){
-            switch (opcao){
+        int opcao = 0;
+
+        while (opcao != 29) {
+            switch (opcao) {
                 case 0:
-                    System.out.println("1-criar usuario");
-                    System.out.println("2-buscar usuario");
-                    System.out.println("3-editar usuario");
-                    System.out.println("4-deletar usuario");
-                    System.out.println("5-criar notebook");
-                    System.out.println("6-buscar notebook");
-                    System.out.println("7-editar notebook");
-                    System.out.println("8-deletar notebook");
-                    System.out.println("9-criar teclado");
-                    System.out.println("10-buscar teclado");
-                    System.out.println("11-editar teclado");
-                    System.out.println("12-deletar teclado");
-                    System.out.println("13-criar Mousepad ");
-                    System.out.println("14-editar Mousepad ");
-                    System.out.println("15-buscar Mousepad ");
-                    System.out.println("16-deletar Mousepad ");
-                    System.out.println("17-criar Mouse ");
-                    System.out.println("18-editar Mouse ");
-                    System.out.println("19-buscar Mouse ");
-                    System.out.println("20-deletar Mouse ");
-                    System.out.println("21-criar Fone ");
-                    System.out.println("22-buscar Fone ");
-                    System.out.println("23-editar Fone ");
-                    System.out.println("24-deletar Fone ");
-                    System.out.println("25-criar Cadeira ");
-                    System.out.println("26-buscar Cadeira ");
-                    System.out.println("27-deletar Cadeira ");
-                    System.out.println("28-editar Cadeira ");
+                    System.out.println("\n=====================");
+                    System.out.println("1- Criar Usuário");
+                    System.out.println("2- Buscar Usuário");
+                    System.out.println("3- Editar Usuário");
+                    System.out.println("4- Deletar Usuário");
+                    System.out.println("5- Criar Notebook");
+                    System.out.println("6- Buscar Notebook");
+                    System.out.println("7- Editar Notebook");
+                    System.out.println("8- Deletar Notebook");
+                    System.out.println("9- Criar Teclado");
+                    System.out.println("10- Buscar Teclado");
+                    System.out.println("11- Editar Teclado");
+                    System.out.println("12- Deletar Teclado");
+                    System.out.println("13- Criar Mousepad");
+                    System.out.println("14- Editar Mousepad");
+                    System.out.println("15- Buscar Mousepad");
+                    System.out.println("16- Deletar Mousepad");
+                    System.out.println("17- Criar Mouse");
+                    System.out.println("18- Editar Mouse");
+                    System.out.println("19- Buscar Mouse");
+                    System.out.println("20- Deletar Mouse");
+                    System.out.println("21- Criar Fone");
+                    System.out.println("22- Buscar Fone");
+                    System.out.println("23- Editar Fone");
+                    System.out.println("24- Deletar Fone");
+                    System.out.println("25- Criar Cadeira");
+                    System.out.println("26- Buscar Cadeira");
+                    System.out.println("27- Deletar Cadeira");
+                    System.out.println("28- Editar Cadeira");
+                    System.out.println("29 - Sair");
+                    System.out.print("Escolha: ");
                     opcao = scanner.nextInt();
                     break;
+
 
                 case 1:
                     System.out.println("digite o nome do usuario");
@@ -78,7 +75,7 @@ public class Main {
                     var email = scanner.next();
                     System.out.println("digite a senha do usuario");
                     var senha = scanner.next();
-                    UsuarioDto usuarioDto = new UsuarioDto(nome,email,senha);
+                    UsuarioDto usuarioDto = new UsuarioDto(nome, email, senha);
                     var usuario = usuarioService.criar(usuarioDto);
                     System.out.println("usuario de email: " + usuario.getEmail() + " e id: "
                             + usuario.getId() + "criado com sucesso");
@@ -97,11 +94,11 @@ public class Main {
                     System.out.println("digite o nome do usuario");
                     var nomeEditar = scanner.next();
                     System.out.println("digite o email do usuario");
-                    var emailEditar  = scanner.next();
+                    var emailEditar = scanner.next();
                     System.out.println("digite a senha do usuario");
-                    var senhaEditar  = scanner.next();
-                    UsuarioDto usuarioDtoEditar  = new UsuarioDto(nomeEditar ,emailEditar ,senhaEditar );
-                    var usuarioEditado = usuarioService.editar(idUsuarioEditar,usuarioDtoEditar);
+                    var senhaEditar = scanner.next();
+                    UsuarioDto usuarioDtoEditar = new UsuarioDto(nomeEditar, emailEditar, senhaEditar);
+                    var usuarioEditado = usuarioService.editar(idUsuarioEditar, usuarioDtoEditar);
                     System.out.println(usuarioEditado);
                     opcao = 0;
                     break;
@@ -114,5 +111,7 @@ public class Main {
                     break;
             }
         }
+        System.out.println("\nPrograma encerrado.");
     }
 }
+    
