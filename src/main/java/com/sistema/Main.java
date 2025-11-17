@@ -17,7 +17,7 @@ public class Main {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         UsuarioService usuarioService = new UsuarioService(usuarioDAO);
         NotebookDAO notebookDAO = new NotebookDAO();
-        NotebookService notebookService = new NotebookService(notebookDAO);
+        NotebookService notebookService= new NotebookService(notebookDAO);
         TecladoDAO tecladoDAO = new TecladoDAO();
         TecladoService tecladoService = new TecladoService(tecladoDAO);
         MousepadDAO mousepadDAO = new MousepadDAO();
@@ -28,10 +28,9 @@ public class Main {
         FoneService foneService = new FoneService(foneDAO);
         CadeiraDAO cadeiraDAO = new CadeiraDAO();
         CadeiraService cadeiraService = new CadeiraService(cadeiraDAO);
-        int opcao = 0;
-
-        while (opcao != 29) {
-            switch (opcao) {
+        int opcao = 0 ;
+        while (opcao == 29){
+            switch (opcao){
                 case 0:
                     System.out.println("\n=====================");
                     System.out.println("1- Criar Usuário");
@@ -66,6 +65,7 @@ public class Main {
                     System.out.print("Escolha: ");
                     opcao = scanner.nextInt();
                     break;
+
 
 
                 case 1:
@@ -152,9 +152,9 @@ public class Main {
                     opcao=0;
                     break;
 
+
             }
         }
         System.out.println("\nPrograma encerrado.");
     }
 }
-    
