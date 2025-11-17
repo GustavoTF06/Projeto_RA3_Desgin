@@ -37,7 +37,7 @@ public class Main {
         CadeiraDAO cadeiraDAO = new CadeiraDAO();
         CadeiraService cadeiraService = new CadeiraService(cadeiraDAO);
         int opcao = 0 ;
-        while (opcao == -1){
+        while (opcao != -1){
             switch (opcao){
                 case 0:
                     System.out.println("1-criar usuario");
@@ -68,6 +68,50 @@ public class Main {
                     System.out.println("26-buscar Cadeira ");
                     System.out.println("27-deletar Cadeira ");
                     System.out.println("28-editar Cadeira ");
+                    opcao = scanner.nextInt();
+                    break;
+
+                case 1:
+                    System.out.println("digite o nome do usuario");
+                    var nome = scanner.next();
+                    System.out.println("digite o email do usuario");
+                    var email = scanner.next();
+                    System.out.println("digite a senha do usuario");
+                    var senha = scanner.next();
+                    UsuarioDto usuarioDto = new UsuarioDto(nome,email,senha);
+                    var usuario = usuarioService.criar(usuarioDto);
+                    System.out.println("usuario de email: " + usuario.getEmail() + " e id: "
+                            + usuario.getId() + "criado com sucesso");
+                    opcao = 0;
+                    break;
+                case 2:
+                    System.out.println("digite o id do usuario");
+                    var idUsuarioBuscado = scanner.nextLong();
+                    var usuarioBuscado = usuarioService.buscar(idUsuarioBuscado);
+                    System.out.println(usuarioBuscado);
+                    opcao = 0;
+                    break;
+                case 3:
+                    System.out.println("digite o id do usuario");
+                    var idUsuarioEditar = scanner.nextLong();
+                    System.out.println("digite o nome do usuario");
+                    var nomeEditar = scanner.next();
+                    System.out.println("digite o email do usuario");
+                    var emailEditar  = scanner.next();
+                    System.out.println("digite a senha do usuario");
+                    var senhaEditar  = scanner.next();
+                    UsuarioDto usuarioDtoEditar  = new UsuarioDto(nomeEditar ,emailEditar ,senhaEditar );
+                    var usuarioEditado = usuarioService.editar(idUsuarioEditar,usuarioDtoEditar);
+                    System.out.println(usuarioEditado);
+                    opcao = 0;
+                    break;
+                case 4:
+                    System.out.println("digite o id do usuario para deletar");
+                    var idUsuarioDeletar = scanner.nextLong();
+                    usuarioService.deletar(idUsuarioDeletar);
+                    System.out.println("Usuario deletado com sucesso");
+                    opcao = 0;
+                    break;
             }
         }
     }
