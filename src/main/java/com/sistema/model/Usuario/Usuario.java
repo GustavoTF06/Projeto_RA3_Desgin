@@ -26,8 +26,13 @@ public class Usuario implements Serializable {
         this.email = email;
         this.senha = senha;
     }
-
     public Usuario(){}
+
+    public Usuario(UsuarioDto usuarioDto) {
+        this.nome = usuarioDto.getNome();
+        this.email = usuarioDto.getEmail();
+        this.senha = usuarioDto.getEmail();
+    }
 
     public Long getId() { return id; }
 
