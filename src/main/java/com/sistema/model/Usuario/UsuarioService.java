@@ -19,4 +19,12 @@ public class UsuarioService {
         usuarioDAO.atualizar(usuario);
         return usuario;
     }
+    public void deletar(Long id){
+        usuarioDAO.deletar(id);
+
+    }
+    public Usuario buscar(Long id){
+        Usuario usuario = usuarioDAO.buscar(id);
+        return  usuario;
+    }
 }
