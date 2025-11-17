@@ -29,7 +29,7 @@ public class Main {
         CadeiraDAO cadeiraDAO = new CadeiraDAO();
         CadeiraService cadeiraService = new CadeiraService(cadeiraDAO);
         int opcao = 0 ;
-        while (opcao != 29){
+        while (opcao == 29){
             switch (opcao){
                 case 0:
                     System.out.println("\n=====================");
@@ -64,73 +64,6 @@ public class Main {
                     System.out.println("29 - Sair");
                     System.out.print("Escolha: ");
                     opcao = scanner.nextInt();
-                    break;
-
-                case 5:
-                    scanner.nextLine();
-                    System.out.println("\n==== Criar Notebook ====");
-                    System.out.print("Nome: ");
-                    String nomeNotebook = scanner.nextLine();
-                    System.out.print("Processador: ");
-                    String processadorNotebook = scanner.nextLine();
-                    System.out.print("Memória RAM: ");
-                    String memoriaRamNotebook = scanner.nextLine();
-                    System.out.print("Memória interna: ");
-                    String memoriaNotebook = scanner.nextLine();
-                    NotebookDto notebookDto = new NotebookDto(
-                            nomeNotebook,
-                            processadorNotebook,
-                            memoriaRamNotebook,
-                            memoriaNotebook
-                    );
-                    Notebook notebookCriado = notebookService.criar(notebookDto);
-                    System.out.println("Notebook criado com ID: " + notebookCriado.getId());
-                    opcao = 0;
-                    break;
-
-                case 6:
-                    System.out.println("\n==== Buscar Notebook ====");
-                    System.out.print("ID: ");
-                    Long idBuscarNotebook = scanner.nextLong();
-                    Notebook notebookEncontrado = notebookService.buscar(idBuscarNotebook);
-                    if (notebookEncontrado != null) {
-                        System.out.println("Encontrado: " + notebookEncontrado);
-                    } else {
-                        System.out.println("Notebook não encontrado.");
-                    }
-                    opcao = 0;
-                    break;
-
-                case 7:
-                    System.out.println("\n==== Editar Notebook ====");
-                    System.out.print("ID do Notebook: ");
-                    Long idEditarNotebook = scanner.nextLong();
-                    scanner.nextLine();
-                    System.out.print("Novo nome: ");
-                    String nomeNovo = scanner.nextLine();
-                    System.out.print("Novo processador: ");
-                    String processadorNovo = scanner.nextLine();
-                    System.out.print("Nova memória RAM: ");
-                    String memoriaRamNova = scanner.nextLine();
-                    System.out.print("Nova memória: ");
-                    String memoriaNova = scanner.nextLine();
-                    NotebookDto notebookAtualizar = new NotebookDto(
-                            nomeNovo,
-                            processadorNovo,
-                            memoriaRamNova,
-                            memoriaNova
-                    );
-                    Notebook notebookEditado = notebookService.editar(idEditarNotebook, notebookAtualizar);
-                    System.out.println("Notebook atualizado: " + notebookEditado);
-                    opcao = 0;
-                    break;
-
-                case 8:
-                    System.out.println("\n==== Deletar Notebook ====");
-                    System.out.print("ID: ");
-                    Long idDeletarNotebook = scanner.nextLong();
-                    notebookService.deletar(idDeletarNotebook);
-                    opcao = 0;
                     break;
             }
         }
