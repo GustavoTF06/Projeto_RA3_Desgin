@@ -7,407 +7,362 @@ import com.sistema.model.Mousepad.*;
 import com.sistema.model.Notebook.*;
 import com.sistema.model.Teclado.*;
 import com.sistema.model.Usuario.*;
-
 import javax.persistence.*;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        UsuarioService usuarioService = new UsuarioService(usuarioDAO);
-        NotebookDAO notebookDAO = new NotebookDAO();
-        NotebookService notebookService= new NotebookService(notebookDAO);
-        TecladoDAO tecladoDAO = new TecladoDAO();
-        TecladoService tecladoService = new TecladoService(tecladoDAO);
-        MousepadDAO mousepadDAO = new MousepadDAO();
-        MousepadService mousepadService = new MousepadService(mousepadDAO);
-        MouseDAO mouseDAO = new MouseDAO();
-        MouseService mouseService = new MouseService(mouseDAO);
-        FoneDAO foneDAO = new FoneDAO();
-        FoneService foneService = new FoneService(foneDAO);
-        CadeiraDAO cadeiraDAO = new CadeiraDAO();
-        CadeiraService cadeiraService = new CadeiraService(cadeiraDAO);
-        int opcao = 0 ;
-        while (opcao != 29){
-            switch (opcao){
-                case 0:
-                    System.out.println("\n=====================");
-                    System.out.println("1- Criar Usuário");
-                    System.out.println("2- Buscar Usuário");
-                    System.out.println("3- Editar Usuário");
-                    System.out.println("4- Deletar Usuário");
-                    System.out.println("5- Criar Notebook");
-                    System.out.println("6- Buscar Notebook");
-                    System.out.println("7- Editar Notebook");
-                    System.out.println("8- Deletar Notebook");
-                    System.out.println("9- Criar Teclado");
-                    System.out.println("10- Buscar Teclado");
-                    System.out.println("11- Editar Teclado");
-                    System.out.println("12- Deletar Teclado");
-                    System.out.println("13- Criar Mousepad");
-                    System.out.println("14- Editar Mousepad");
-                    System.out.println("15- Buscar Mousepad");
-                    System.out.println("16- Deletar Mousepad");
-                    System.out.println("17- Criar Mouse");
-                    System.out.println("18- Editar Mouse");
-                    System.out.println("19- Buscar Mouse");
-                    System.out.println("20- Deletar Mouse");
-                    System.out.println("21- Criar Fone");
-                    System.out.println("22- Buscar Fone");
-                    System.out.println("23- Editar Fone");
-                    System.out.println("24- Deletar Fone");
-                    System.out.println("25- Criar Cadeira");
-                    System.out.println("26- Buscar Cadeira");
-                    System.out.println("27- Deletar Cadeira");
-                    System.out.println("28- Editar Cadeira");
-                    System.out.println("29 - Sair");
-                    System.out.print("Escolha: ");
-                    opcao = scanner.nextInt();
-                    break;
-
+        UsuarioService usuarioService = new UsuarioService(new UsuarioDAO());
+        NotebookService notebookService = new NotebookService(new NotebookDAO());
+        TecladoService tecladoService = new TecladoService(new TecladoDAO());
+        MousepadService mousepadService = new MousepadService(new MousepadDAO());
+        MouseService mouseService = new MouseService(new MouseDAO());
+        FoneService foneService = new FoneService(new FoneDAO());
+        CadeiraService cadeiraService = new CadeiraService(new CadeiraDAO());
+        int opcao = -1;
+        while (opcao != 8) {
+            System.out.println("\n===== MENU PRINCIPAL =====");
+            System.out.println("1 - Usuário");
+            System.out.println("2 - Cadeira");
+            System.out.println("3 - Fone");
+            System.out.println("4 - Mouse");
+            System.out.println("5 - Mousepad");
+            System.out.println("6 - Notebook");
+            System.out.println("7 - Teclado");
+            System.out.println("8 - Sair");
+            System.out.print("Escolha: ");
+            opcao = scanner.nextInt();
+            switch (opcao) {
                 case 1:
-                    System.out.println("Digite o nome do usuario");
-                    var nome = scanner.next();
-                    System.out.println("Digite o email do usuario");
-                    var email = scanner.next();
-                    System.out.println("Digite a senha do usuario");
-                    var senha = scanner.next();
-                    UsuarioDto usuarioDto = new UsuarioDto(nome, email, senha);
-                    var usuario = usuarioService.criar(usuarioDto);
-                    System.out.println("Usuario de email: " + usuario.getEmail() + " e id: "
-                            + usuario.getId() + "criado com sucesso");
-                    opcao = 0;
+                    System.out.println("\n--- Usuário ---");
+                    System.out.println("1 - Criar");
+                    System.out.println("2 - Buscar");
+                    System.out.println("3 - Editar");
+                    System.out.println("4 - Deletar");
+                    System.out.print("Escolha: ");
+                    int u = scanner.nextInt();
+                    switch (u) {
+                        case 1:
+                            System.out.print("Nome:");
+                            String nome = scanner.next();
+                            System.out.print("Email:");
+                            String email = scanner.next();
+                            System.out.print("Senha:");
+                            String senha = scanner.next();
+                            UsuarioDto dto = new UsuarioDto(nome, email, senha);
+                            var criado = usuarioService.criar(dto);
+                            System.out.println("Criado: " + criado);
+                            break;
+                        case 2:
+                            System.out.print("ID: ");
+                            long id = scanner.nextLong();
+                            System.out.println(usuarioService.buscar(id));
+                            break;
+                        case 3:
+                            System.out.print("ID: ");
+                            long idEd = scanner.nextLong();
+                            System.out.print("Nome: ");
+                            String nEd = scanner.next();
+                            System.out.print("Email: ");
+                            String eEd = scanner.next();
+                            System.out.print("Senha: ");
+                            String sEd = scanner.next();
+                            UsuarioDto dtoEd = new UsuarioDto(nEd, eEd, sEd);
+                            System.out.println(usuarioService.editar(idEd, dtoEd));
+                            break;
+                        case 4:
+                            System.out.print("ID: ");
+                            long idDel = scanner.nextLong();
+                            usuarioService.deletar(idDel);
+                            System.out.println("Deletado!");
+                            break;
+                    }
                     break;
 
                 case 2:
-                    System.out.println("Digite o id do usuario");
-                    var idUsuarioBuscado = scanner.nextLong();
-                    var usuarioBuscado = usuarioService.buscar(idUsuarioBuscado);
-                    System.out.println(usuarioBuscado);
-                    opcao = 0;
+                    System.out.println("\n--- Cadeira ---");
+                    System.out.println("1 - Criar");
+                    System.out.println("2 - Buscar");
+                    System.out.println("3 - Editar");
+                    System.out.println("4 - Deletar");
+                    System.out.print("Escolha: ");
+                    int c = scanner.nextInt();
+                    switch (c) {
+                        case 1:
+                            System.out.print("Nome:");
+                            String nomeC = scanner.next();
+                            System.out.print("Marca:");
+                            String marcaC = scanner.next();
+                            System.out.print("Altura:");
+                            double altC = scanner.nextDouble();
+                            CadeiraDto cdto = new CadeiraDto(nomeC, marcaC, altC);
+                            System.out.println("Criado: " + cadeiraService.criar(cdto));
+                            break;
+                        case 2:
+                            System.out.print("ID:");
+                            long idCB = scanner.nextLong();
+                            System.out.println(cadeiraService.buscar(idCB));
+                            break;
+                        case 3:
+                            System.out.print("ID:");
+                            long idCE = scanner.nextLong();
+                            System.out.print("Nome:");
+                            String nCE = scanner.next();
+                            System.out.print("Marca:");
+                            String mCE = scanner.next();
+                            System.out.print("Altura:");
+                            double aCE = scanner.nextDouble();
+                            CadeiraDto cdtoE = new CadeiraDto(nCE, mCE, aCE);
+                            System.out.println("Editado: " + cadeiraService.editar(idCE, cdtoE));
+                            break;
+                        case 4:
+                            System.out.print("ID:");
+                            long idCD = scanner.nextLong();
+                            cadeiraService.deletar(idCD);
+                            System.out.println("Deletado!");
+                    }
                     break;
 
                 case 3:
-                    System.out.println("Digite o id do usuario");
-                    var idUsuarioEditar = scanner.nextLong();
-                    System.out.println("Digite o nome do usuario");
-                    var nomeEditar = scanner.next();
-                    System.out.println("Digite o email do usuario");
-                    var emailEditar = scanner.next();
-                    System.out.println("Digite a senha do usuario");
-                    var senhaEditar = scanner.next();
-                    UsuarioDto usuarioDtoEditar = new UsuarioDto(nomeEditar, emailEditar, senhaEditar);
-                    var usuarioEditado = usuarioService.editar(idUsuarioEditar, usuarioDtoEditar);
-                    System.out.println(usuarioEditado);
-                    opcao = 0;
+                    System.out.println("\n--- Fone ---");
+                    System.out.println("1 - Criar");
+                    System.out.println("2 - Buscar");
+                    System.out.println("3 - Editar");
+                    System.out.println("4 - Deletar");
+                    System.out.print("Escolha: ");
+                    int f = scanner.nextInt();
+                    switch (f) {
+                        case 1:
+                            System.out.print("Nome: ");
+                            String nf = scanner.next();
+                            System.out.print("Marca: ");
+                            String mf = scanner.next();
+                            System.out.print("Tem microfone (true/false): ");
+                            boolean mic = scanner.nextBoolean();
+                            FoneDto fd = new FoneDto(nf, mf, mic);
+                            System.out.println("Criado: " + foneService.criar(fd));
+                            break;
+                        case 2:
+                            System.out.print("ID: ");
+                            long idf = scanner.nextLong();
+                            System.out.println(foneService.buscar(idf));
+                            break;
+                        case 3:
+                            System.out.print("ID: ");
+                            long idFe = scanner.nextLong();
+                            System.out.print("Nome: ");
+                            String nFe = scanner.next();
+                            System.out.print("Marca: ");
+                            String mFe = scanner.next();
+                            System.out.print("Microfone: ");
+                            boolean micE = scanner.nextBoolean();
+                            FoneDto fdE = new FoneDto(nFe, mFe, micE);
+                            System.out.println(foneService.editar(idFe, fdE));
+                            break;
+                        case 4:
+                            System.out.print("ID: ");
+                            long idFd = scanner.nextLong();
+                            foneService.deletar(idFd);
+                            System.out.println("Deletado!");
+                            break;
+                    }
                     break;
 
                 case 4:
-                    System.out.println("Digite o id do usuario para deletar");
-                    var idUsuarioDeletar = scanner.nextLong();
-                    usuarioService.deletar(idUsuarioDeletar);
-                    System.out.println("Usuario deletado com sucesso");
-                    opcao = 0;
+                    System.out.println("\n--- Mouse ---");
+                    System.out.println("1 - Criar");
+                    System.out.println("2 - Buscar");
+                    System.out.println("3 - Editar");
+                    System.out.println("4 - Deletar");
+                    System.out.print("Escolha: ");
+                    int m = scanner.nextInt();
+                    switch (m) {
+                        case 1:
+                            System.out.print("Nome: ");
+                            String nm = scanner.next();
+                            System.out.print("Marca: ");
+                            String mm = scanner.next();
+                            System.out.print("Cor: ");
+                            String cm = scanner.next();
+                            MouseDto md = new MouseDto(nm, mm, cm);
+                            System.out.println(mouseService.criar(md));
+                            break;
+                        case 2:
+                            System.out.print("ID: ");
+                            long idm = scanner.nextLong();
+                            System.out.println(mouseService.buscar(idm));
+                            break;
+                        case 3:
+                            System.out.print("ID: ");
+                            long idMe = scanner.nextLong();
+                            System.out.print("Nome: ");
+                            String nMe = scanner.next();
+                            System.out.print("Marca: ");
+                            String mMe = scanner.next();
+                            System.out.print("Cor: ");
+                            String cMe = scanner.next();
+                            MouseDto mdE = new MouseDto(nMe, mMe, cMe);
+                            System.out.println(mouseService.editar(idMe, mdE));
+                            break;
+                        case 4:
+                            System.out.print("ID: ");
+                            long idMd = scanner.nextLong();
+                            mouseService.deletar(idMd);
+                            System.out.println("Deletado!");
+                    }
                     break;
 
                 case 5:
-                    scanner.nextLine();
-                    System.out.print("Nome: ");
-                    String nomeNotebook = scanner.nextLine();
-                    System.out.print("Processador: ");
-                    String processadorNotebook = scanner.nextLine();
-                    System.out.print("Memória RAM: ");
-                    String memoriaRamNotebook = scanner.nextLine();
-                    System.out.print("Memória interna: ");
-                    String memoriaNotebook = scanner.nextLine();
-                    NotebookDto notebookDto = new NotebookDto(
-                            nomeNotebook,
-                            processadorNotebook,
-                            memoriaRamNotebook,
-                            memoriaNotebook
-                    );
-                    Notebook notebookCriado = notebookService.criar(notebookDto);
-                    System.out.println("Notebook criado com ID: " + notebookCriado.getId());
-                    opcao = 0;
+                    System.out.println("\n--- Mousepad ---");
+                    System.out.println("1 - Criar");
+                    System.out.println("2 - Buscar");
+                    System.out.println("3 - Editar");
+                    System.out.println("4 - Deletar");
+                    System.out.print("Escolha: ");
+                    int mp = scanner.nextInt();
+                    switch (mp) {
+                        case 1:
+                            System.out.print("Nome: ");
+                            String nmp = scanner.next();
+                            System.out.print("Marca: ");
+                            String mmp = scanner.next();
+                            System.out.print("Altura: ");
+                            double amp = scanner.nextDouble();
+                            System.out.print("Comprimento: ");
+                            double cmp = scanner.nextDouble();
+                            MousepadDto mpd = new MousepadDto(nmp, mmp, amp, cmp);
+                            System.out.println(mousepadService.criar(mpd));
+                            break;
+                        case 2:
+                            System.out.print("ID: ");
+                            long idmp = scanner.nextLong();
+                            System.out.println(mousepadService.buscar(idmp));
+                            break;
+                        case 3:
+                            System.out.print("ID: ");
+                            long idMPE = scanner.nextLong();
+                            System.out.print("Nome: ");
+                            String nMPE = scanner.next();
+                            System.out.print("Marca: ");
+                            String mMPE = scanner.next();
+                            System.out.print("Altura: ");
+                            double aMPE = scanner.nextDouble();
+                            System.out.print("Comprimento: ");
+                            double cMPE = scanner.nextDouble();
+                            MousepadDto mpdE = new MousepadDto(nMPE, mMPE, aMPE, cMPE);
+                            System.out.println(mousepadService.editar(idMPE, mpdE));
+                            break;
+                        case 4:
+                            System.out.print("ID: ");
+                            long idMPD = scanner.nextLong();
+                            mousepadService.deletar(idMPD);
+                            System.out.println("Deletado!");
+                    }
                     break;
 
                 case 6:
-                    System.out.print("ID: ");
-                    Long idBuscarNotebook = scanner.nextLong();
-                    Notebook notebookEncontrado = notebookService.buscar(idBuscarNotebook);
-                    if (notebookEncontrado != null) {
-                        System.out.println("Encontrado: " + notebookEncontrado);
-                    } else {
-                        System.out.println("Notebook não encontrado.");
+                    System.out.println("\n--- Notebook ---");
+                    System.out.println("1 - Criar");
+                    System.out.println("2 - Buscar");
+                    System.out.println("3 - Editar");
+                    System.out.println("4 - Deletar");
+                    System.out.print("Escolha: ");
+                    int nt = scanner.nextInt();
+                    switch (nt) {
+                        case 1:
+                            scanner.nextLine();
+                            System.out.print("Nome: ");
+                            String nn = scanner.nextLine();
+                            System.out.print("Processador: ");
+                            String pn = scanner.nextLine();
+                            System.out.print("RAM: ");
+                            String rn = scanner.nextLine();
+                            System.out.print("Memória: ");
+                            String mn = scanner.nextLine();
+                            NotebookDto nd = new NotebookDto(nn, pn, rn, mn);
+                            System.out.println(notebookService.criar(nd));
+                            break;
+                        case 2:
+                            System.out.print("ID: ");
+                            long idN = scanner.nextLong();
+                            System.out.println(notebookService.buscar(idN));
+                            break;
+                        case 3:
+                            scanner.nextLine();
+                            System.out.print("ID: ");
+                            long idNE = scanner.nextLong();
+                            scanner.nextLine();
+                            System.out.print("Nome: ");
+                            String nNE = scanner.nextLine();
+                            System.out.print("Processador: ");
+                            String pNE = scanner.nextLine();
+                            System.out.print("RAM: ");
+                            String rNE = scanner.nextLine();
+                            System.out.print("Memória: ");
+                            String mNE = scanner.nextLine();
+                            NotebookDto ndE = new NotebookDto(nNE, pNE, rNE, mNE);
+                            System.out.println(notebookService.editar(idNE, ndE));
+                            break;
+                        case 4:
+                            System.out.print("ID: ");
+                            long idND = scanner.nextLong();
+                            notebookService.deletar(idND);
+                            System.out.println("Deletado!");
                     }
-                    opcao = 0;
                     break;
 
                 case 7:
-                    scanner.nextLine();
-                    System.out.print("ID do Notebook: ");
-                    Long idEditarNotebook = scanner.nextLong();
-                    scanner.nextLine();
-                    System.out.print("Novo nome: ");
-                    String nomeNovo = scanner.nextLine();
-                    System.out.print("Novo processador: ");
-                    String processadorNovo = scanner.nextLine();
-                    System.out.print("Nova memória RAM: ");
-                    String memoriaRamNova = scanner.nextLine();
-                    System.out.print("Nova memória: ");
-                    String memoriaNova = scanner.nextLine();
-                    NotebookDto notebookAtualizar = new NotebookDto(
-                            nomeNovo,
-                            processadorNovo,
-                            memoriaRamNova,
-                            memoriaNova
-                    );
-                    Notebook notebookEditado = notebookService.editar(idEditarNotebook, notebookAtualizar);
-                    System.out.println("Notebook atualizado: " + notebookEditado);
-                    opcao = 0;
+                    System.out.println("\n--- Teclado ---");
+                    System.out.println("1 - Criar");
+                    System.out.println("2 - Buscar");
+                    System.out.println("3 - Editar");
+                    System.out.println("4 - Deletar");
+                    System.out.print("Escolha: ");
+                    int t = scanner.nextInt();
+                    switch (t) {
+                        case 1:
+                            System.out.print("Nome: ");
+                            String ntc = scanner.next();
+                            System.out.print("Marca: ");
+                            String mtc = scanner.next();
+                            System.out.print("Tamanho: ");
+                            String ttc = scanner.next();
+                            TecladoDto td = new TecladoDto(ntc, mtc, ttc);
+                            System.out.println(tecladoService.criar(td));
+                            break;
+                        case 2:
+                            System.out.print("ID: ");
+                            long idT = scanner.nextLong();
+                            System.out.println(tecladoService.buscar(idT));
+                            break;
+                        case 3:
+                            System.out.print("ID: ");
+                            long idTE = scanner.nextLong();
+                            System.out.print("Nome: ");
+                            String nTE = scanner.next();
+                            System.out.print("Marca: ");
+                            String mTE = scanner.next();
+                            System.out.print("Tamanho: ");
+                            String tTE = scanner.next();
+                            TecladoDto tdE = new TecladoDto(nTE, mTE, tTE);
+                            System.out.println(tecladoService.editar(idTE, tdE));
+                            break;
+                        case 4:
+                            System.out.print("ID: ");
+                            long idTD = scanner.nextLong();
+                            tecladoService.deletar(idTD);
+                            System.out.println("Deletado!");
+                    }
                     break;
 
                 case 8:
-                    System.out.println("\n==== Deletar Notebook ====");
-                    System.out.print("ID: ");
-                    Long idDeletarNotebook = scanner.nextLong();
-                    notebookService.deletar(idDeletarNotebook);
-                    System.out.println("Notebook deletado.");
-                    opcao = 0;
+                    System.out.println("\nPrograma encerrado.");
                     break;
 
-                case 9:
-                    System.out.println("Digite o nome do teclado");
-                    var nomeTeclado = scanner.next();
-                    System.out.println("Digite a marca do teclado");
-                    var marcaTeclado = scanner.next();
-                    System.out.println("Digite o tamanho do teclado");
-                    var tamanhoTeclado = scanner.next();
-                    TecladoDto tecladoDto = new TecladoDto(nomeTeclado,marcaTeclado,tamanhoTeclado);
-                    var teclado = tecladoService.criar(tecladoDto);
-                    System.out.println(teclado);
-                    opcao = 0;
-                    break;
-
-                case 10:
-                    System.out.println("Digite o id do teclado");
-                    var idTecladoBusccar = scanner.nextLong();
-                    var tecladoBuscado = tecladoService.buscar(idTecladoBusccar);
-                    System.out.println(tecladoBuscado);
-                    opcao=0;
-                    break;
-
-                case 11:
-                    System.out.println("Digite o id do teclado ");
-                    var idTecladoEditar = scanner.nextLong();
-                    System.out.println("Digite o nome do teclado");
-                    var nomeTecladoEditar = scanner.next();
-                    System.out.println("Digite a marca do teclado");
-                    var marcaTecladoEditar = scanner.next();
-                    System.out.println("Digite o tamanho do teclado");
-                    var tamanhoTecladoEditar = scanner.next();
-                    TecladoDto tecladoDtoEditar = new TecladoDto(nomeTecladoEditar,marcaTecladoEditar,tamanhoTecladoEditar);
-                    var tecladoEditado = tecladoService.editar(idTecladoEditar,tecladoDtoEditar);
-                    System.out.println(tecladoEditado);
-                    opcao=0;
-                    break;
-
-                case 12:
-                    System.out.println("Digite o id od teclado para deletar");
-                    var tecladoDeletar = scanner.nextLong();
-                    tecladoService.deletar(tecladoDeletar);
-                    System.out.println("Teclado deletado com sucesso");
-                    opcao=0;
-                    break;
-
-                case 13:
-                    System.out.println("digite o nome do mousepad");
-                    var nomeMousepad = scanner.next();
-                    System.out.println("digite a marca do mousepad");
-                    var marcaMousepad = scanner.next();
-                    System.out.println("digite a altura do mousepad" );
-                    var alturaMousepad = scanner.nextDouble();
-                    System.out.println("digite o comprimento do mousepad");
-                    var comprimentoMousepad = scanner.nextDouble();
-                    MousepadDto mousepadDto = new MousepadDto(nomeMousepad,marcaMousepad,alturaMousepad,
-                            comprimentoMousepad);
-                    var mousepad = mousepadService.criar(mousepadDto);
-                    System.out.println(mousepad);
-                    opcao=0;
-                    break;
-
-                case 14:
-                    System.out.println("digite o id do mousepad");
-                    var mousepadId = scanner.nextLong();
-                    var mousepadBuscado = mousepadService.buscar(mousepadId);
-                    System.out.println(mousepadBuscado);
-                    opcao=0;
-                    break;
-
-                case 15:
-                    System.out.println("digite o id do mousepad");
-                    var mousepadIdEditar = scanner.nextLong();
-                    System.out.println("digite o nome do mousepad");
-                    var nomeMousepadEditar  = scanner.next();
-                    System.out.println("digite a marca do mousepad");
-                    var marcaMousepadEditar  = scanner.next();
-                    System.out.println("digite a altura do mousepad" );
-                    var alturaMousepadEditar  = scanner.nextDouble();
-                    System.out.println("digite o comprimento do mousepad");
-                    var comprimentoMousepadEditar  = scanner.nextDouble();
-                    MousepadDto mousepadDtoEditar  = new MousepadDto(nomeMousepadEditar ,marcaMousepadEditar
-                            ,alturaMousepadEditar , comprimentoMousepadEditar );
-                    var mousepadEditado = mousepadService.editar(mousepadIdEditar,mousepadDtoEditar);
-                    opcao=0;
-                    break;
-
-                case 16:
-                    System.out.println("digite o id do mousepad");
-                    var mousepadIdDeletar = scanner.nextLong();
-                    mousepadService.deletar(mousepadIdDeletar);
-                    System.out.println("deletado com sucesso");
-                    opcao=0;
-                    break;
-
-                case 17:
-                    System.out.println("Digite o nome do mouse");
-                    String nomeMouse = scanner.next();
-                    System.out.println("Digite a marca do mouse");
-                    String marcaMouse = scanner.next();
-                    System.out.println("Digite a cor do mouse");
-                    String corMouse = scanner.next();
-                    MouseDto mouseDtoCriar = new MouseDto(nomeMouse, marcaMouse, corMouse);
-                    var mouseCriado = mouseService.criar(mouseDtoCriar);
-                    System.out.println("Mouse criado com sucesso: " + mouseCriado);
-                    opcao = 0;
-                    break;
-
-                case 18:
-                    System.out.println("Digite o id do mouse");
-                    long idMouseEditar = scanner.nextLong();
-                    System.out.println("Digite o nome do mouse");
-                    String nomeMouseEditar = scanner.next();
-                    System.out.println("Digite a marca do mouse");
-                    String marcaMouseEditar = scanner.next();
-                    System.out.println("Digite a cor do mouse");
-                    String corMouseEditar = scanner.next();
-                    MouseDto mouseDtoEditar = new MouseDto(nomeMouseEditar, marcaMouseEditar, corMouseEditar);
-                    var mouseEditado = mouseService.editar(idMouseEditar, mouseDtoEditar);
-                    System.out.println("Mouse editado com sucesso: " + mouseEditado);
-                    opcao = 0;
-                    break;
-
-                case 19:
-                    System.out.println("Digite o id do mouse");
-                    long idMouseBuscar = scanner.nextLong();
-                    var mouseBuscado = mouseService.buscar(idMouseBuscar);
-                    System.out.println("Encontrado: " + mouseBuscado);
-                    opcao = 0;
-                    break;
-
-                case 20:
-                    System.out.println("Digite o id do mouse para deletar");
-                    long idMouseDeletar = scanner.nextLong();
-                    mouseService.deletar(idMouseDeletar);
-                    System.out.println("Mouse deletado com sucesso");
-                    opcao = 0;
-
-                    break;
-
-                case 21:
-                    System.out.println("Digite o nome do fone");
-                    String nomeFone = scanner.next();
-                    System.out.println("Digite a marca do fone");
-                    String marcaFone = scanner.next();
-                    System.out.println("O fone possui microfone? (true/false)");
-                    boolean microfoneFone = scanner.nextBoolean();
-
-                    FoneDto foneDtoCriar = new FoneDto(nomeFone, marcaFone, microfoneFone);
-                    var foneCriado = foneService.criar(foneDtoCriar);
-                    System.out.println("Fone criado: " + foneCriado);
-                    opcao = 0;
-                    break;
-
-                case 22:
-                    System.out.println("Digite o id do fone");
-                    long idFoneBuscar = scanner.nextLong();
-                    var foneBuscado = foneService.buscar(idFoneBuscar);
-                    System.out.println("Encontrado: " + foneBuscado);
-                    opcao = 0;
-                    break;
-
-                case 23:
-                    System.out.println("Digite o id do fone para editar");
-                    long idFoneEditar = scanner.nextLong();
-                    System.out.println("Digite o nome do fone");
-                    String nomeFoneEditar = scanner.next();
-                    System.out.println("Digite a marca do fone");
-                    String marcaFoneEditar = scanner.next();
-                    System.out.println("O fone possui microfone? (true/false)");
-                    boolean microfoneFoneEditar = scanner.nextBoolean();
-
-                    FoneDto foneDtoEditar = new FoneDto(nomeFoneEditar, marcaFoneEditar, microfoneFoneEditar);
-                    var foneEditado = foneService.editar(idFoneEditar, foneDtoEditar);
-                    System.out.println("Editado: " + foneEditado);
-                    opcao = 0;
-                    break;
-
-                case 24:
-                    System.out.println("Digite o id do fone para deletar");
-                    long idFoneDeletar = scanner.nextLong();
-                    foneService.deletar(idFoneDeletar);
-                    System.out.println("Fone deletado com sucesso!");
-                    opcao = 0;
-                    break;
-
-                case 25:
-                    System.out.println("Digite o nome da cadeira");
-                    String nomeCadeira = scanner.next();
-                    System.out.println("Digite a marca da cadeira");
-                    String marcaCadeira = scanner.next();
-                    System.out.println("Digite a altura da cadeira");
-                    double alturaCadeira = scanner.nextDouble();
-                    CadeiraDto cadeiraDtoCriar = new CadeiraDto(nomeCadeira, marcaCadeira, alturaCadeira);
-                    var cadeiraCriada = cadeiraService.criar(cadeiraDtoCriar);
-                    System.out.println("Cadeira criada: " + cadeiraCriada);
-
-                    opcao = 0;
-                    break;
-
-                case 26:
-                    System.out.println("Digite o id da cadeira");
-                    long idCadeiraBuscar = scanner.nextLong();
-                    var cadeiraBuscada = cadeiraService.buscar(idCadeiraBuscar);
-                    System.out.println("Encontrada: " + cadeiraBuscada);
-                    opcao = 0;
-                    break;
-
-                case 27:
-                    System.out.println("Digite o id da cadeira para deletar");
-                    long idCadeiraDeletar = scanner.nextLong();
-                    cadeiraService.deletar(idCadeiraDeletar);
-                    System.out.println("Cadeira deletada com sucesso!");
-                    opcao = 0;
-                    break;
-
-                case 28:
-                    System.out.println("Digite o id da cadeira");
-                    long idCadeiraEditar = scanner.nextLong();
-                    System.out.println("Digite o nome da cadeira");
-                    String nomeCadeiraEditar = scanner.next();
-                    System.out.println("Digite a marca da cadeira");
-                    String marcaCadeiraEditar = scanner.next();
-                    System.out.println("Digite a altura da cadeira");
-                    double alturaCadeiraEditar = scanner.nextDouble();
-                    CadeiraDto cadeiraDtoEditar =
-                            new CadeiraDto(nomeCadeiraEditar, marcaCadeiraEditar, alturaCadeiraEditar);
-                    var cadeiraEditada = cadeiraService.editar(idCadeiraEditar, cadeiraDtoEditar);
-                    System.out.println("Editado: " + cadeiraEditada);
-                    opcao = 0;
-                    break;
+                default:
+                    System.out.println("Opção inválida!");
             }
         }
-        System.out.println("\nPrograma encerrado.");
     }
 }

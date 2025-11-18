@@ -15,7 +15,7 @@ public class UsuarioService {
     public Usuario editar(Long id,UsuarioDto usuarioAtualizar){
         Usuario usuario = usuarioDAO.buscar(id);
         if (usuario == null) {
-            throw new IllegalArgumentException("Cadeira não encontrada para o ID: " + id);
+            throw new IllegalArgumentException("Usuário não encontrado para o ID: " + id);
         }
         usuario.setEmail(usuarioAtualizar.getEmail());
         usuario.setNome(usuarioAtualizar.getNome());
